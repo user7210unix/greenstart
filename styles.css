@@ -46,8 +46,8 @@ body {
 /* Top Banner and Title */
 #header {
     position: relative;
-    height: 182px; /* Set a fixed height for the header */
-    margin-bottom: 20px;
+    height: 59px; /* Set a fixed height for the header */
+    margin-bottom: 10px;
 }
 .startpage-body #header:before {
     content: "";
@@ -57,7 +57,7 @@ body {
                 linear-gradient(to left, transparent 0%, rgba(25, 25, 25, 0.8) 50%, transparent 100%), 
                 linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* Darkening overlay */
                 url('assets/images/wall.jpg') no-repeat, /* Local banner image */
-                url('https://via.placeholder.com/1200x182/191919/191919') no-repeat; /* Fallback placeholder */
+                url('https://w.wallhaven.cc/full/ne/wallhaven-ne8vyo.jpg') no-repeat; /* Fallback placeholder */
     background-position: center 30%; /* Crop by focusing on the upper center */
     background-size: 140% auto; /* Crop by zooming in slightly */
     position: absolute;
