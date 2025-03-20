@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Startpage</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Load Montserrat font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+</head>
+<body class="startpage-body">
+    <div id="header">
+        <!-- The title is added via CSS -->
+    </div>
+
+    <div id="nav">
+        <a href="#social">Social</a>
+        <a href="#media">Media</a>
+        <a href="#boards">Boards</a>
+        <a href="#tech">Tech</a>
+        <a href="#knowledge">Knowledge</a>
+    </div>
+
+    <div class="container">
+        <input class="search-bar" type="text" placeholder="Search" onkeypress="if(event.key === 'Enter') window.location.href='https://www.google.com/search?q='+this.value">
+        <div class="grid">
+            <div class="column">
+                <h2 id="social">Social</h2>
+                <a href="https://discord.com/app">Discord</a>
+                <a href="https://reddit.com">Reddit</a>
+            </div>
+            <div class="column">
+                <h2 id="media">Media</h2>
+                <a href="https://youtube.com">YouTube</a>
+                <a href="https://twitch.tv">Twitch</a>
+            </div>
+            <div class="column">
+                <h2 id="boards">Boards</h2>
+                <a href="https://4chan.org">4chan</a>
+                <a href="https://boards.4chan.org/g/">4chan /g/</a>
+                <a href="https://boards.4chan.org/b/">4chan /b/</a>
+                <a href="https://boards.4chan.org/v/">4chan /v/</a>
+                <a href="https://boards.4chan.org/a/">4chan /a/</a>
+            </div>
+            <div class="column">
+                <h2 id="tech">Tech</h2>
+                <a href="https://github.com">GitHub</a>
+                <a href="https://news.ycombinator.com">Hacker News</a>
+            </div>
+            <div class="column">
+                <h2 id="knowledge">Knowledge</h2>
+                <a href="https://wikipedia.org">Wikipedia</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>Custom Startpage © 2025</p>
+    </div>
+</body>
+</html>

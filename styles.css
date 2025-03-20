@@ -1,0 +1,221 @@
+/* Font Imports */
+@font-face {
+    font-family: 'Kaushan Script';
+    src: url(https://fonts.gstatic.com/s/kaushanscript/v5/qx1LSqts-NtiKcLw4N03IJsM3FTMmj2kTPH3yX99Yaw.woff2) format('woff2');
+}
+
+/* General Layout and Background */
+html, body {
+    background: #191919 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    overflow-x: hidden;
+}
+body {
+    color: #c3c3c3 !important;
+    font-family: 'Montserrat', Arial, sans-serif !important;
+    font-size: 11pt !important;
+    margin: 0 auto !important;
+    max-width: 1200px !important;
+    padding: 20px !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(84, 204, 102, 0.4);
+    border-radius: 6px;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(84, 204, 102, 0.6);
+}
+::-webkit-scrollbar-track {
+    background: #2c2c2c;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-corner {
+    background-color: #3a3939;
+}
+
+/* Top Banner and Title */
+#header {
+    position: relative;
+    margin-bottom: 40px;
+}
+.startpage-body #header:before {
+    content: "";
+    background: linear-gradient(to top, rgba(25, 25, 25, 1) 0%, rgba(25, 25, 25, 0.8) 50%, transparent 100%), 
+                linear-gradient(to bottom, transparent 0%, rgba(25, 25, 25, 0.8) 50%, rgba(25, 25, 25, 1) 100%), 
+                linear-gradient(to right, transparent 0%, rgba(25, 25, 25, 0.8) 50%, transparent 100%), 
+                linear-gradient(to left, transparent 0%, rgba(25, 25, 25, 0.8) 50%, transparent 100%), 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), /* Darkening overlay */
+                url('https://w.wallhaven.cc/full/42/wallhaven-42d62g.jpg') no-repeat, /* New banner for startpage */
+                url('https://via.placeholder.com/1200x182/191919/191919') no-repeat; /* Fallback placeholder */
+    background-position: center 30%; /* Crop by focusing on the upper center */
+    background-size: 140% auto; /* Crop by zooming in slightly */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 182px;
+    z-index: -1;
+}
+.startpage-body #header:after {
+    content: "Startpage";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 70px;
+    font-family: 'Kaushan Script' !important;
+    font-weight: normal !important;
+    line-height: 1;
+    letter-spacing: -1px;
+    transition: all 0.3s cubic-bezier(.25, .5, .25, 1);
+}
+.startpage-body #header:hover:after {
+    text-shadow: 0 1px 0px #90ce88, 1px 0 0px #90ce88, 0 -1px 0px #90ce88, -1px 0 0px #90ce88 !important;
+    color: #1a1d1c !important;
+    transform: translateX(-50%) scale(1.02); /* Slight scale on hover */
+}
+
+/* Navigation */
+#nav {
+    background: #212121 !important;
+    border: 1px solid #262626 !important;
+    box-shadow: 2px 2px 2px #171717 !important;
+    padding: 10px;
+    text-align: center;
+    margin-top: 120px; /* Offset for header */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#nav:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 4px #171717 !important;
+}
+#nav a {
+    color: #747474 !important;
+    font-family: 'Montserrat', Arial, sans-serif !important;
+    padding: 0 10px;
+    text-decoration: none !important;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+#nav a:hover {
+    color: #e7e7e7 !important;
+    transform: scale(1.1); /* Slight scale on hover */
+}
+
+/* Startpage Container (for multi-column layout) */
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Search Bar */
+.search-bar {
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 500px;
+    border: 4px solid #262626;
+    border-radius: 25px;
+    font-size: 24px;
+    outline: none;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+    color: #c3c3c3;
+    background: #212121;
+    font-family: 'Montserrat', Arial, sans-serif !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    text-align: center;
+}
+.search-bar::placeholder {
+    color: #747474;
+    text-align: center;
+}
+.search-bar:hover {
+    transform: scale(1.04);
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.3);
+    border-color: #527d4c; /* Green border on hover */
+}
+
+/* Grid Layout for Columns */
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.column {
+    background: #212121 !important;
+    border: 4px solid #262626 !important;
+    border-radius: 15px;
+    padding: 15px;
+    width: 180px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.column:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: #527d4c !important; /* Green border on hover */
+}
+.column h2 {
+    color: #c3c3c3 !important;
+    font-family: 'Montserrat', Arial, sans-serif !important;
+    font-size: 20px !important;
+    background: #527d4c !important;
+    padding: 8px;
+    margin: 0 0 10px 0;
+    border-radius: 2px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.column h2:hover {
+    background: #5a8c52 !important; /* Slightly lighter green on hover */
+    transform: scale(1.02);
+}
+.column a {
+    display: block;
+    font-size: 18px;
+    color: #747474 !important;
+    text-decoration: none !important;
+    margin: 10px 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.column a:hover {
+    color: #e7e7e7 !important;
+    transform: scale(1.1);
+}
+
+/* Footer */
+#footer {
+    background: #212121 !important;
+    border: 1px solid #262626 !important;
+    box-shadow: 2px 2px 2px #171717 !important;
+    padding: 10px 20px;
+    text-align: center;
+    color: #747474 !important;
+    font-family: 'Montserrat', Arial, sans-serif !important;
+    margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#footer:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 4px #171717 !important;
+}
+#footer p {
+    margin: 0;
+    transition: color 0.3s ease;
+}
+#footer p:hover {
+    color: #e7e7e7 !important;
+}
