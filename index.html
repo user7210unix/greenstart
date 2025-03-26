@@ -3,18 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐉 𝗦𝘁𝗮𝗿𝘁</title>
+    <title>𝗦𝘁𝗮𝗿𝘁</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Load Montserrat font from Google Fonts -->
+    <!-- Load Montserrat font from Google Fonts as fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="startpage-body">
     <div id="header">
         <!-- The title is added via CSS -->
     </div>
 
+    <!-- Settings Button and Popup -->
+    <div class="settings-container">
+        <button class="settings-btn"><i class="fas fa-cog"></i></button>
+        <div class="settings-popup" id="settingsPopup">
+            <div class="settings-content">
+                <h3>Settings</h3>
+                
+                <!-- Search Engine Selection -->
+                <div class="setting-item">
+                    <label for="searchEngine">Search Engine:</label>
+                    <select id="searchEngine" name="searchEngine">
+                        <option value="startpage">Startpage</option>
+                        <option value="google">Google</option>
+                        <option value="duckduckgo">DuckDuckGo</option>
+                    </select>
+                </div>
+
+                <!-- Color Picker -->
+                <div class="setting-item">
+                    <label for="themeColor">Theme Color:</label>
+                    <input type="color" id="themeColor" name="themeColor" value="#54cc66">
+                </div>
+
+                <!-- Notes Section -->
+                <div class="setting-item">
+                    <label for="notesToggle">Notes:</label>
+                    <button id="notesToggle">Show</button>
+                </div>
+                <textarea id="notes" class="notes-area" placeholder="Quick notes..." style="display: none;"></textarea>
+
+                <!-- Reset Settings -->
+                <div class="setting-item">
+                    <button id="resetSettings">Reset Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <input class="search-bar" type="text" placeholder="Search" onkeypress="if(event.key === 'Enter') window.location.href='https://www.startpage.com/do/search?q='+encodeURIComponent(this.value)">
+        <input class="search-bar" type="text" placeholder="Search">
         <div class="grid">
             <div class="column">
                 <h2 id="social">Social</h2>
@@ -24,7 +64,8 @@
                 <a href="https://reddit.com/r/unixporn">/R/Unixp*rn</a>
                 <a href="https://reddit.com/r/linuxmemes">/R/Linuxmemes</a>
                 <a href="https://twitter.com">Twitter</a>
-
+                <a href="https://twitch.tv">Twitch</a>
+                <a href="https://instagram.com">Instagram</a>
             </div>
             <div class="column">
                 <h2 id="Coding">Media</h2>
@@ -32,6 +73,8 @@
                 <a href="https://github.com/user7210unix?tab=repositories">Projects</a>
                 <a href="https://stackoverflow.com/questions">Stackoverflow</a>
                 <a href="https://www.reddit.com/r/programming/">/R/Programming</a>
+                <a href="https://codepen.io">CodePen</a>
+                <a href="https://dev.to">DEV Community</a>
             </div>
             <div class="column">
                 <h2 id="boards">Boards</h2>
@@ -41,6 +84,7 @@
                 <a href="https://boards.4chan.org/w/">Anime/Wallpapers</a>
                 <a href="https://boards.4chan.org/hr/">High Resolution</a>
                 <a href="https://boards.4chan.org/pol/">Politically Incorrect</a>
+                <a href="https://boards.4chan.org/b/">Random</a>
             </div>
             <div class="column">
                 <h2 id="tech">Tech</h2>
@@ -51,8 +95,117 @@
                 <a href="https://www.gentoo.org/">Gentoo</a>
                 <a href="https://archlinux.org/">Arch</a>
                 <a href="https://archlinux.org/packages/">Arch Packages</a>
+                <a href="https://www.kernel.org/">Linux Kernel</a>
             </div>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <script>
+        // Settings Popup Toggle
+        const settingsBtn = document.querySelector('.settings-btn');
+        const settingsPopup = document.getElementById('settingsPopup');
+        
+        settingsBtn.addEventListener('click', () => {
+            settingsPopup.style.display = settingsPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close popup when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!settingsBtn.contains(e.target) && !settingsPopup.contains(e.target)) {
+                settingsPopup.style.display = 'none';
+            }
+        });
+
+        // Search Engine Selection
+        const searchEngineSelect = document.getElementById('searchEngine');
+        const searchBar = document.querySelector('.search-bar');
+        
+        const searchEngines = {
+            startpage: 'https://www.startpage.com/do/search?q=',
+            google: 'https://www.google.com/search?q=',
+            duckduckgo: 'https://duckduckgo.com/?q='
+        };
+
+        searchEngineSelect.addEventListener('change', () => {
+            localStorage.setItem('searchEngine', searchEngineSelect.value);
+        });
+
+        // Load saved search engine
+        const savedEngine = localStorage.getItem('searchEngine');
+        if (savedEngine) {
+            searchEngineSelect.value = savedEngine;
+        }
+
+        // Update search bar functionality
+        searchBar.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const engine = searchEngines[searchEngineSelect.value] || searchEngines.startpage;
+                window.location.href = engine + encodeURIComponent(this.value);
+            }
+        });
+
+        // Theme Color Picker
+        const colorPicker = document.getElementById('themeColor');
+        const resetButton = document.getElementById('resetSettings');
+        colorPicker.addEventListener('change', () => {
+            const color = colorPicker.value;
+            document.documentElement.style.setProperty('--theme-color', color);
+            resetButton.style.background = color; // Update reset button color
+            localStorage.setItem('themeColor', color);
+        });
+
+        // Load saved color and apply to reset button
+        document.documentElement.style.setProperty('--theme-color', '#54cc66');
+        resetButton.style.background = '#54cc66'; // Default color
+        const savedColor = localStorage.getItem('themeColor');
+        if (savedColor) {
+            colorPicker.value = savedColor;
+            document.documentElement.style.setProperty('--theme-color', savedColor);
+            resetButton.style.background = savedColor;
+        }
+
+        // Notes Toggle
+        const notesToggle = document.getElementById('notesToggle');
+        const notesArea = document.getElementById('notes');
+        notesToggle.addEventListener('click', () => {
+            const isVisible = notesArea.style.display === 'block';
+            notesArea.style.display = isVisible ? 'none' : 'block';
+            notesToggle.textContent = isVisible ? 'Show' : 'Hide';
+        });
+
+        // Load and save notes
+        notesArea.addEventListener('input', () => {
+            localStorage.setItem('notes', notesArea.value);
+        });
+        const savedNotes = localStorage.getItem('notes');
+        if (savedNotes) {
+            notesArea.value = savedNotes;
+        }
+
+        // Reset Settings
+        const resetSettings = document.getElementById('resetSettings');
+        resetSettings.addEventListener('click', () => {
+            localStorage.clear();
+            searchEngineSelect.value = 'startpage';
+            colorPicker.value = '#54cc66';
+            document.documentElement.style.setProperty('--theme-color', '#54cc66');
+            resetButton.style.background = '#54cc66'; // Reset button color
+            notesArea.value = '';
+            notesArea.style.display = 'none';
+            notesToggle.textContent = 'Show';
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
